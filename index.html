@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dịch Thuật Minh Đức | Trung - Việt - Anh</title>
+    <!-- Font chữ Google: Roboto cho nét hiện đại -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. THIẾT LẬP CHUNG (RESET & VARS) --- */
+        :root {
+            --primary-color: #003366; /* Xanh đậm: Uy tín, Tin cậy */
+            --secondary-color: #f0f4f8; /* Xám xanh nhạt: Nền nhẹ nhàng */
+            --accent-color: #d4af37; /* Vàng kim: Điểm nhấn, Sang trọng */
+            --text-color: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Cuộn mượt */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+        body { color: var(--text-color); line-height: 1.6; background-color: var(--white); }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; }
+
+        /* --- 2. HEADER & NAVIGATION --- */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .container { max-width: 1200px; margin: auto; padding: 0 20px; }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: 500; font-size: 1rem; color: var(--text-color); }
+        .nav-links a:hover { color: var(--primary-color); }
+        .nav-cta {
+            background: var(--primary-color);
+            color: var(--white) !important;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .nav-cta:hover { background: #002244; }
+
+        /* --- 3. HERO SECTION (PHẦN MỞ ĐẦU) --- */
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.7)), 
+                        url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1600');
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Full màn hình */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+            margin-top: 0; /* Reset margin top */
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .hero-content h1 span { color: var(--accent-color); }
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #000;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            background: #e5c150;
+        }
+
+        /* --- 4. ABOUT SECTION --- */
+        .section { padding: 80px 0; }
+        .bg-light { background-color: var(--secondary-color); }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .section-title .line {
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-text p { margin-bottom: 20px; font-size: 1.1rem; color: var(--text-light); text-align: justify; }
+        .about-image img { border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+        /* --- 5. SERVICES SECTION --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: 0.3s;
+            border: 1px solid #eee;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: var(--secondary-color);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+        }
+
+        .service-card h3 { margin-bottom: 15px; font-size: 1.4rem; color: var(--primary-color); }
+        .service-card p { color: var(--text-light); }
+
+        /* --- 6. LANGUAGES HIGHLIGHT --- */
+        .languages-section {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+        }
+        .lang-flex {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        .lang-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .lang-code {
+            font-size: 3rem;
+            font-weight: 900;
+            opacity: 0.3;
+            line-height: 1;
+        }
+        .lang-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: -15px;
+            color: var(--accent-color);
+        }
+
+        /* --- 7. CONTACT SECTION (UPDATED) --- */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            background: var(--white);
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .contact-info {
+            flex: 1;
+            padding: 50px;
+            background: var(--primary-color);
+            color: white;
+        }
+        .contact-form-wrapper {
+            flex: 1.5;
+            padding: 50px;
+            background: var(--white);
+        }
+        
+        .contact-info .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+        .contact-info .info-icon {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-right: 20px;
+            margin-top: 5px;
+        }
+        .contact-info h4 { font-size: 1.2rem; margin-bottom: 5px; color: var(--white); opacity: 0.9; }
+        .contact-info p, .contact-info a { color: var(--white); font-size: 1rem; opacity: 0.8; }
+        
+        /* Form Styles */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: var(--primary-color); }
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+        }
+        .btn-submit {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+        .btn-submit:hover { background: #002244; transform: translateY(-2px); }
+
+        /* --- 8. FOOTER --- */
+        footer {
+            background: #1a1a1a;
+            color: #ccc;
+            padding: 50px 0 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h3 { color: var(--white); margin-bottom: 20px; font-size: 1.3rem; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a:hover { color: var(--accent-color); padding-left: 5px; }
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; height: auto; padding: 15px 0; }
+            .nav-links { display: none; /* Ẩn menu mobile cho gọn */ }
+            .hero-content h1 { font-size: 2.2rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .contact-container { flex-direction: column; }
+            .contact-info, .contact-form-wrapper { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">
+                <span style="font-size: 2rem;">🌐</span> MINH ĐỨC TRANSLATION
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Trang chủ</a></li>
+                <li><a href="#about">Về chúng tôi</a></li>
+                <li><a href="#services">Dịch vụ</a></li>
+                <li><a href="#contact" class="nav-cta">Gửi yêu cầu</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>CÔNG TY TNHH DỊCH VỤ DỊCH THUẬT <br> <span>MINH ĐỨC</span></h1>
+            <p>Chuyên nghiệp - Chính xác - Bảo mật tuyệt đối. <br> Đối tác tin cậy cho mọi nhu cầu ngôn ngữ Trung - Việt - Anh.</p>
+            <a href="#contact" class="hero-btn">NHẬN BÁO GIÁ MIỄN PHÍ</a>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Về Chúng Tôi</h2>
+                <div class="line"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1664575602554-2087b04935a5?auto=format&fit=crop&q=80&w=800" alt="Văn phòng làm việc">
+                </div>
+                <div class="about-text">
+                    <h3>Uy Tín Tạo Nên Thương Hiệu</h3>
+                    <p>Chào mừng đến với <strong>Công Ty TNHH Dịch Vụ Dịch Thuật Minh Đức</strong>. Chúng tôi là đơn vị chuyên cung cấp các giải pháp ngôn ngữ toàn diện tại Long An và các khu vực lân cận.</p>
+                    <p>Với phương châm <em>"Chữ Tâm kia mới bằng ba chữ Tài"</em>, Minh Đức cam kết mang đến những bản dịch không chỉ chính xác về mặt ngữ nghĩa mà còn phù hợp với văn phong bản xứ và bối cảnh chuyên ngành.</p>
+                    <ul style="margin-top: 20px;">
+                        <li>✅ Đội ngũ biên dịch viên giàu kinh nghiệm.</li>
+                        <li>✅ Quy trình kiểm soát chất lượng nghiêm ngặt.</li>
+                        <li>✅ Cam kết bảo mật thông tin khách hàng tuyệt đối.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Dịch Vụ Của Chúng Tôi</h2>
+                <div class="line"></div>
+            </div>
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <div class="service-icon">📄</div>
+                    <h3>Dịch Thuật Hợp Đồng</h3>
+                    <p>Biên dịch chính xác các loại hợp đồng kinh tế, thương mại, lao động. Đảm bảo tính pháp lý chặt chẽ cho doanh nghiệp.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <div class="service-icon">🗃️</div>
+                    <h3>Dịch Thuật Giấy Tờ</h3>
+                    <p>Xử lý các loại hồ sơ cá nhân, giấy tờ tùy thân, hồ sơ du học, visa, giấy phép kinh doanh với tốc độ nhanh chóng.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <div class="service-icon">🌍</div>
+                    <h3>Đa Ngôn Ngữ</h3>
+                    <p>Thế mạnh vượt trội với các cặp ngôn ngữ: <strong>Tiếng Trung - Tiếng Việt - Tiếng Anh</strong>. Phục vụ đa dạng nhu cầu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HIGHLIGHT LANGUAGE -->
+    <section class="languages-section">
+        <div class="container">
+            <h2>THẾ MẠNH NGÔN NGỮ</h2>
+            <div class="lang-flex">
+                <div class="lang-item">
+                    <span class="lang-code">CN</span>
+                    <span class="lang-name">TIẾNG TRUNG</span>
+                </div>
+                <div class="lang-item">
+                    <span class="lang-code">VN</span>
+                    <span class="lang-name">TIẾNG VIỆT</span>
+                </div>
+                <div class="lang-item">
+                    <span class="lang-code">EN</span>
+                    <span class="lang-name">TIẾNG ANH</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Liên Hệ / Báo Giá</h2>
+                <div class="line"></div>
+            </div>
+            
+            <div class="contact-container">
+                <!-- Cột Thông Tin -->
+                <div class="contact-info">
+                    <h3 style="margin-bottom: 30px; font-size: 1.5rem; color: white;">Thông Tin Liên Hệ</h3>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-content">
+                            <h4>Địa chỉ văn phòng</h4>
+                            <p><strong>246 Lạc Tấn, Tân Trụ, Long An</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-content">
+                            <h4>Điện thoại hỗ trợ</h4>
+                            <p><a href="tel:0900000000" style="color: var(--accent-color); font-weight: bold; font-size: 1.2rem;">0387320396</a></p>
+                            <small>(Bấm để gọi ngay)</small>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div class="info-content">
+                            <h4>Email</h4>
+                            <p>lienhe@dichthua.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cột Form Điền -->
+                <div class="contact-form-wrapper">
+                    <h3 style="margin-bottom: 20px; color: var(--primary-color);">Gửi Yêu Cầu Báo Giá</h3>
+                    <form id="quoteForm">
+                        <div class="form-group">
+                            <label>Họ và Tên</label>
+                            <input type="text" class="form-control" placeholder="Nhập tên của bạn" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Số điện thoại</label>
+                            <input type="tel" class="form-control" placeholder="Nhập số điện thoại" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Loại tài liệu cần dịch</label>
+                            <select class="form-control">
+                                <option>Hợp đồng kinh tế</option>
+                                <option>Hồ sơ cá nhân / Visa</option>
+                                <option>Tài liệu kỹ thuật</option>
+                                <option>Khác</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Ghi chú thêm</label>
+                            <textarea class="form-control" rows="4" placeholder="Ví dụ: Cần gấp trong 2 ngày..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">GỬI YÊU CẦU NGAY</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>DỊCH THUẬT MINH ĐỨC</h3>
+                    <p>Đối tác tin cậy của bạn trong mọi rào cản ngôn ngữ. Chất lượng và uy tín là kim chỉ nam hoạt động của chúng tôi.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>LIÊN KẾT NHANH</h3>
+                    <ul>
+                        <li><a href="#home">Trang chủ</a></li>
+                        <li><a href="#about">Giới thiệu</a></li>
+                        <li><a href="#services">Dịch vụ</a></li>
+                        <li><a href="#contact">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>DỊCH VỤ CHÍNH</h3>
+                    <ul>
+                        <li><a href="#">Dịch thuật Tiếng Trung</a></li>
+                        <li><a href="#">Dịch thuật Tiếng Anh</a></li>
+                        <li><a href="#">Dịch hợp đồng kinh tế</a></li>
+                        <li><a href="#">Công chứng giấy tờ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Công ty TNHH Dịch vụ Dịch thuật Minh Đức. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT XỬ LÝ DEMO -->
+    <script>
+        // Xử lý sự kiện gửi form (Demo)
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Ngăn trang web reload
+            
+            // Lấy thông tin (để minh họa)
+            const btn = this.querySelector('.btn-submit');
+            const originalText = btn.innerText;
+            
+            // Hiệu ứng đang gửi
+            btn.innerText = 'ĐANG GỬI...';
+            btn.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                alert('Cảm ơn bạn! Yêu cầu báo giá đã được gửi thành công đến Dịch Thuật Minh Đức. Chúng tôi sẽ liên hệ lại sớm!');
+                btn.innerText = originalText;
+                btn.style.opacity = '1';
+                this.reset(); // Xóa trắng form
+            }, 1500);
+        });
+    </script>
+
+</body>
+</html>
